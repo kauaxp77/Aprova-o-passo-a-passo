@@ -334,3 +334,5 @@ Antes de publicar, valide ao menos:
 ## Licença
 
 Nenhum arquivo de licenca foi encontrado no repositorio. Defina uma licenca antes de distribuir ou abrir o projeto para contribuicoes externas.
+#   A P R O V A - O - P A S S O - A - P A S S O 1 3 . 0  
+ 
