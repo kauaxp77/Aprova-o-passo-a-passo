@@ -17,7 +17,6 @@
 
   const grid = document.getElementById('banksGrid');
   const template = document.getElementById('bankCardTemplate');
-  const openMenuId = { value: null };
 
   function renderBanks() {
     grid.innerHTML = '';
@@ -32,8 +31,6 @@
       const subtitle = fragment.querySelector('.bank-card__subtitle');
       const buyButton = fragment.querySelector('.bank-card__buy-button');
       const cartButton = fragment.querySelector('.bank-card__cart-button');
-      const menuButton = fragment.querySelector('.bank-card__menu-button');
-      const menu = fragment.querySelector('.bank-card__menu');
 
       const localArtwork = `../images/bancos/${bank.imageKey}.png`;
       const svgFallback = `../images/bancos/${bank.imageKey}.svg`;
@@ -84,40 +81,9 @@
         cartButton.removeAttribute('aria-disabled');
       }
 
-      menuButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const cardId = String(bank.id);
-        openMenuId.value = openMenuId.value === cardId ? null : cardId;
-        syncMenus();
-      });
-
-      menu.dataset.cardMenu = String(bank.id);
-      card.dataset.cardId = String(bank.id);
       grid.appendChild(fragment);
     });
-
-    syncMenus();
   }
-
-  function syncMenus() {
-    document.querySelectorAll('.bank-card__menu').forEach((menu) => {
-      menu.hidden = menu.dataset.cardMenu !== openMenuId.value;
-    });
-  }
-
-  document.addEventListener('click', (event) => {
-    if (!event.target.closest('.bank-card__menu') && !event.target.closest('.bank-card__menu-button')) {
-      openMenuId.value = null;
-      syncMenus();
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      openMenuId.value = null;
-      syncMenus();
-    }
-  });
 
   document.addEventListener('DOMContentLoaded', renderBanks);
 })();

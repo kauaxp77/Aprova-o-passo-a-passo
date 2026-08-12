@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="../images/logo/favicon.svg" />
     <title>Concursos Bancários | Aprovação Passo a Passo</title>
     <meta name="description" content="Plataforma premium para concursos e carreiras bancárias." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +17,12 @@
   <body class="bancos-showcase">
     <div class="page-shell">
       <header class="site-header top-header glass-panel">
-        <a class="brand" href="./bancos.html" aria-label="Aprovação Passo a Passo">
+        <a class="brand" href="./index.html" aria-label="Voltar para a apresentação da Aprovação Passo a Passo">
           <img class="brand__image" src="../images/logo/aprovacao-logo.svg" alt="Aprovação Passo a Passo" />
+        </a>
+        <a class="catalog-return-link" href="./index.html">
+          <span aria-hidden="true">←</span>
+          Voltar ao início
         </a>
       </header>
 
@@ -32,6 +37,48 @@
           <div class="banks-grid" id="banksGrid"></div>
         </section>
       </main>
+
+      <footer class="catalog-footer" aria-label="Informações e contatos">
+        <div class="catalog-footer__inner">
+          <div class="catalog-footer__main">
+            <div class="catalog-footer__about">
+              <img class="catalog-footer__brand-image" src="../images/logo/aprovacao-logo.svg" alt="Aprovação Passo a Passo" />
+
+              <section class="catalog-footer__contact" aria-labelledby="catalog-contact-title">
+                <h2 id="catalog-contact-title">Contato</h2>
+                <address>
+                  <a href="https://wa.me/556196363209" target="_blank" rel="noopener noreferrer"><strong>WhatsApp:</strong> +55 61 96363209</a>
+                  <a href="https://www.instagram.com/profbetofernandes/" target="_blank" rel="noopener noreferrer"><strong>Instagram:</strong> @profbetofernandes</a>
+                  <a href="https://www.youtube.com/@PROFBETOFERNANDES" target="_blank" rel="noopener noreferrer"><strong>YouTube:</strong> PROF. BETO FERNANDES</a>
+                </address>
+              </section>
+            </div>
+
+            <section class="catalog-footer__message" aria-labelledby="catalog-message-title">
+              <h2 id="catalog-message-title">Mensagem</h2>
+              <p class="catalog-footer__quote">“Desistir dos seus sonhos não é uma opção.”</p>
+              <p class="catalog-footer__message-copy">Estude hoje para conquistar a aprovação que mudará sua vida amanhã.</p>
+            </section>
+          </div>
+
+          <section class="catalog-footer__support" aria-labelledby="catalog-support-title">
+            <div>
+              <h2 id="catalog-support-title">Já é aluno da Mentoria?</h2>
+              <p>Clique aqui para entrar em contato com nosso suporte.</p>
+            </div>
+            <a class="catalog-footer__support-link" href="https://wa.me/556196363209?text=Olá%2C%20quero%20acessar%20o%20grupo%20exclusivo." target="_blank" rel="noopener noreferrer">
+              Acessar grupo exclusivo
+              <span aria-hidden="true">→</span>
+            </a>
+          </section>
+
+          <div class="catalog-footer__legal">
+            <span>© 2026 Aprovação Passo a Passo</span>
+            <span>Prof. BETÃO | Aprovação Passo a Passo Ltda</span>
+            <span>Todos os direitos reservados.</span>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <template id="bankCardTemplate">
@@ -41,14 +88,6 @@
             <img class="bank-card__image" alt="" />
           </div>
           <span class="bank-card__status">PUBLICADO</span>
-          <button class="bank-card__menu-button" type="button" aria-label="Abrir ações do card">⋮</button>
-          <div class="bank-card__menu" hidden>
-            <button type="button">Editar</button>
-            <button type="button">Configurar</button>
-            <button type="button">Alterar link</button>
-            <button type="button">Alterar status</button>
-            <button type="button" class="danger">Excluir</button>
-          </div>
         </div>
         <div class="bank-card__body">
           <div class="bank-card__heading">

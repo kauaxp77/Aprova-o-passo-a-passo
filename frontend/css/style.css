@@ -46,26 +46,28 @@ body::after {
 
 body::before {
   background-color: #010102;
-  background:
-    radial-gradient(circle at 50% 44%, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.8) 28%, rgba(0, 0, 0, 0.56) 54%, rgba(0, 0, 0, 0.18) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.42) 100%),
-    url("../assets/neon-cyber-bg.svg");
+  background-image: url("../assets/banking-architecture-bg.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  transform: scale(1.02);
+  background-attachment: fixed;
+  transform: none;
   opacity: 1;
 }
 
 body::after {
   background:
-    radial-gradient(circle at 7% 42%, rgba(56, 124, 255, 0.34), transparent 20%),
-    radial-gradient(circle at 93% 41%, rgba(255, 48, 48, 0.28), transparent 20%),
-    radial-gradient(circle at 72% 90%, rgba(40, 255, 87, 0.26), transparent 18%),
-    radial-gradient(circle at 18% 90%, rgba(47, 119, 255, 0.18), transparent 14%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.015), transparent 58%);
-  filter: blur(22px);
-  opacity: 0.92;
+    radial-gradient(ellipse at 50% 42%, rgba(1, 4, 8, 0.03) 0%, rgba(1, 4, 8, 0.1) 46%, rgba(0, 0, 0, 0.34) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.2) 100%);
+  filter: none;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    background-attachment: scroll;
+    background-position: center center;
+  }
 }
 
 a { color: inherit; }
@@ -560,34 +562,6 @@ img { display: block; max-width: 100%; }
   width: 112px;
   height: 112px;
   border-color: rgba(34, 197, 94, 0.12);
-}
-
-.banks-section {
-  position: relative;
-}
-
-/* Decorative perimeter lines */
-.banks-section::before,
-.banks-section::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  border-radius: 999px;
-  opacity: 0.55;
-}
-
-.banks-section::before {
-  inset: -18px auto auto -6px;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
-}
-
-.banks-section::after {
-  inset: auto -6px -18px auto;
-  width: 160px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.8), transparent);
 }
 
 .banks-grid {

@@ -15,48 +15,33 @@ body.bancos-showcase {
 }
 
 body.bancos-showcase::before {
-  background: url("../assets/neon-cyber-bg.svg") center center / cover no-repeat;
+  background-image: url("../assets/banking-architecture-bg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: none;
   transform: none;
   opacity: 1;
 }
 
 body.bancos-showcase::after {
-  background: none;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(1, 4, 8, 0.02) 0%, rgba(1, 4, 8, 0.08) 48%, rgba(0, 0, 0, 0.28) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18));
   filter: none;
-  opacity: 0;
+  opacity: 1;
 }
 
 .bancos-showcase .page-shell {
   position: relative;
 }
 
-.bancos-showcase .page-shell::before,
-.bancos-showcase .page-shell::after {
-  content: none;
-}
-
-.bancos-showcase .page-shell::before {
-  left: 0;
-  background:
-    repeating-linear-gradient(
-      165deg,
-      rgba(37, 99, 235, 0.22) 0 2px,
-      rgba(37, 99, 235, 0) 2px 14px
-    );
-  mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 82%, transparent 100%);
-  filter: blur(0.3px);
-}
-
-.bancos-showcase .page-shell::after {
-  right: 0;
-  background:
-    repeating-linear-gradient(
-      15deg,
-      rgba(220, 38, 38, 0.2) 0 2px,
-      rgba(220, 38, 38, 0) 2px 14px
-    );
-  mask-image: linear-gradient(180deg, transparent 0%, black 20%, black 80%, transparent 100%);
-  filter: blur(0.3px);
+@media (max-width: 768px) {
+  body.bancos-showcase::before {
+    background-attachment: scroll;
+    background-position: center center;
+  }
 }
 
 .bancos-showcase .top-header {
@@ -547,6 +532,39 @@ body.bancos-showcase::after {
   box-shadow: none;
 }
 
+.bancos-showcase .catalog-return-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(132, 197, 255, 0.28);
+  border-radius: 5px;
+  background: rgba(7, 17, 31, 0.62);
+  color: rgba(236, 245, 255, 0.9);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.bancos-showcase .catalog-return-link span {
+  color: #5aabff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.bancos-showcase .catalog-return-link:hover,
+.bancos-showcase .catalog-return-link:focus-visible {
+  border-color: rgba(140, 211, 255, 0.8);
+  background: rgba(16, 65, 112, 0.68);
+  color: #ffffff;
+  outline: none;
+  transform: translateX(-2px);
+}
+
 .bancos-showcase .page-main {
   width: min(calc(100% - 48px), 1000px);
   padding: 96px 0 18px;
@@ -722,6 +740,15 @@ body.bancos-showcase::after {
   gap: 10px;
 }
 
+@media (max-width: 480px) {
+  .bancos-showcase .catalog-return-link {
+    gap: 5px;
+    min-height: 32px;
+    padding-inline: 9px;
+    font-size: 0.6rem;
+  }
+}
+
 .bancos-showcase .header-button {
   min-height: 34px;
   padding: 0 14px;
@@ -763,4 +790,210 @@ body.bancos-showcase::after {
 
 .bancos-showcase .profile-chip__arrow {
   font-size: 0.65rem;
+}
+
+.bancos-showcase .catalog-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 36px;
+  border-top: 1px solid rgba(149, 192, 255, 0.16);
+  background:
+    linear-gradient(90deg, rgba(11, 51, 93, 0.22), transparent 34%, transparent 66%, rgba(152, 106, 24, 0.18)),
+    linear-gradient(180deg, rgba(2, 7, 14, 0.94), rgba(2, 4, 9, 0.99));
+  box-shadow: 0 -24px 52px rgba(0, 0, 0, 0.26);
+}
+
+.catalog-footer__inner {
+  width: min(calc(100% - 48px), 1000px);
+  margin: 0 auto;
+  padding: 46px 0 24px;
+}
+
+.catalog-footer__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+  gap: clamp(40px, 8vw, 100px);
+  padding-bottom: 32px;
+}
+
+.catalog-footer__brand-image {
+  width: 156px;
+  height: auto;
+}
+
+.catalog-footer h2,
+.catalog-footer p {
+  margin: 0;
+}
+
+.catalog-footer h2 {
+  color: #f6d28d;
+  font-family: "Sora", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.catalog-footer__contact {
+  margin-top: 24px;
+}
+
+.catalog-footer__contact address {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.76rem;
+  font-style: normal;
+}
+
+.catalog-footer__contact a {
+  width: fit-content;
+  color: rgba(240, 245, 255, 0.82);
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.catalog-footer__contact strong {
+  color: #f6d28d;
+  font-weight: 800;
+}
+
+.catalog-footer__contact a:hover,
+.catalog-footer__contact a:focus-visible {
+  color: #ffffff;
+  outline: none;
+  transform: translateX(3px);
+}
+
+.catalog-footer__message {
+  align-self: end;
+}
+
+.catalog-footer__quote {
+  margin-top: 12px !important;
+  padding: 13px 16px;
+  border-left: 3px solid #f6d28d;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.catalog-footer__message-copy,
+.catalog-footer__support p {
+  color: rgba(223, 232, 246, 0.72);
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.catalog-footer__message-copy {
+  max-width: 390px;
+  margin-top: 16px !important;
+}
+
+.catalog-footer__support {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(246, 210, 141, 0.32);
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(70, 54, 10, 0.38), rgba(16, 18, 14, 0.72));
+}
+
+.catalog-footer__support h2 {
+  color: #ffffff;
+  font-size: 0.8rem;
+  text-transform: none;
+}
+
+.catalog-footer__support p {
+  margin-top: 4px;
+}
+
+.catalog-footer__support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 6px;
+  background: #f6d28d;
+  color: #201608;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.catalog-footer__support-link:hover,
+.catalog-footer__support-link:focus-visible {
+  outline: none;
+  background: #ffe5ae;
+  box-shadow: 0 10px 24px rgba(246, 210, 141, 0.2);
+  transform: translateY(-2px);
+}
+
+.catalog-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(215, 225, 239, 0.52);
+  font-size: 0.64rem;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .catalog-footer__inner {
+    width: min(calc(100% - 40px), 620px);
+    padding-top: 40px;
+  }
+
+  .catalog-footer__main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 30px;
+  }
+
+  .catalog-footer__support {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .catalog-footer__support-link {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-footer__inner {
+    width: min(calc(100% - 28px), 480px);
+    padding-top: 32px;
+  }
+
+  .catalog-footer__support {
+    padding: 18px;
+  }
+
+  .catalog-footer__support-link {
+    min-height: 46px;
+    padding-inline: 14px;
+    font-size: 0.7rem;
+  }
+
+  .catalog-footer__legal {
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+  }
 }
