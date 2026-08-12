@@ -31,7 +31,7 @@ flowchart LR
 	Backend -. futura API .-> Scripts
 ```
 
-A tela principal e ativa é o catálogo bancário em `frontend/html/bancos.html`. Ela exibe uma grade de cursos com background neon, logo da plataforma, imagem de capa, selo de publicação, menu de ações e botões de compra.
+A entrada principal é a landing page em `frontend/html/index.html`. Ela apresenta a proposta da plataforma, o responsável pelo projeto e a transição para o catálogo bancário em `frontend/html/bancos.html`, onde ficam os cursos por instituição.
 
 ## Tecnologias e estado do projeto
 
@@ -49,9 +49,9 @@ Não há `package.json`, `pom.xml`, `build.gradle`, dependências npm, wrapper M
 
 ### Opção 1: abrir diretamente
 
-Abra `frontend/html/bancos.html` no navegador. A página foi validada usando a URL local do arquivo e não exige servidor para renderizar o catálogo.
+Abra `frontend/html/index.html` no navegador. A página foi validada usando a URL local do arquivo e não exige servidor para renderizar a landing ou o catálogo.
 
-O arquivo `frontend/html/index.html` redireciona automaticamente para `bancos.html`.
+Use os CTAs **Explorar bancos** ou **Ver todos os bancos** para acessar o catálogo. Também é possível abrir `frontend/html/bancos.html` diretamente.
 
 ### Opção 2: servir por HTTP local
 
@@ -65,7 +65,7 @@ python -m http.server 5500
 Depois, abra:
 
 ```text
-http://localhost:5500/html/bancos.html
+http://localhost:5500/html/index.html
 ```
 
 Também é possível usar qualquer extensão de servidor estático do VS Code.
@@ -81,6 +81,7 @@ APPBANCOS/
 |   |   `-- neon-corporate-bg.svg      # Variação alternativa de fundo
 |   |-- css/
 |   |   |-- style.css                  # Estilos globais
+|   |   |-- landing.css                # Landing page de apresentação
 |   |   |-- bancos.css                 # Catálogo bancário e cards
 |   |   |-- responsive.css             # Breakpoints
 |   |   |-- cards.css
@@ -89,8 +90,8 @@ APPBANCOS/
 |   |   |-- header.css
 |   |   `-- outros-bancos.css
 |   |-- html/
-|   |   |-- index.html                 # Redireciona para bancos.html
-|   |   |-- bancos.html                # Página principal do catálogo
+|   |   |-- index.html                 # Landing page e entrada principal
+|   |   |-- bancos.html                # Catálogo de cursos por banco
 |   |   |-- curso.html
 |   |   |-- cursos.html
 |   |   |-- dashboard.html
@@ -105,6 +106,7 @@ APPBANCOS/
 |   |   |-- icones/
 |   |   `-- icons/
 |   `-- js/
+|       |-- landing.js                 # Revelação e movimento sutil da landing
 |       |-- bancos.js                  # Renderização do catálogo
 |       |-- main.js                    # Tema e fallback de arte
 |       |-- cursos.js
@@ -129,7 +131,20 @@ APPBANCOS/
 
 ## Frontend
 
-### Página principal: catálogo bancário
+### Landing page
+
+Arquivo: `frontend/html/index.html`
+
+A landing reúne quatro áreas:
+
+- hero com o posicionamento da plataforma e CTA para a seleção de bancos;
+- apresentação do Prof. Betão e do propósito do projeto;
+- convite final para explorar as instituições bancárias disponíveis.
+- rodapé temático com contatos, mensagem, suporte e CTA para o WhatsApp informado.
+
+Os estilos específicos ficam em `frontend/css/landing.css`, isolados das regras de `bancos.css`. O arquivo `frontend/js/landing.js` revela seções ao entrar na viewport, aplica parallax discreto para ponteiros precisos e respeita `prefers-reduced-motion`.
+
+### Catálogo bancário
 
 Arquivo: `frontend/html/bancos.html`
 
@@ -200,13 +215,18 @@ Os links `linkCompra` atuais usam `https://example.com/...` e devem ser substitu
 
 | Asset | Uso |
 | --- | --- |
-| `frontend/assets/neon-cyber-bg.svg` | Fundo ativo com frame neon azul, vermelho e verde |
+| `frontend/assets/banking-architecture-bg.png` | Fundo oficial enviado, com arquitetura, logos bancárias e iluminação azul/dourada |
+| `frontend/assets/neon-cyber-bg.svg` | Asset legado do fundo neon anterior, não aplicado nas telas principais |
 | `frontend/assets/neon-corporate-bg.svg` | Versao alternativa de ambiente corporativo futurista |
+| `frontend/images/professor/prof-betao.png` | Foto oficial do Prof. Betão usada na landing page |
+| `frontend/images/professor/prof-betao-signature-white.png` | Assinatura branca do Prof. Betão sobreposta à foto da landing |
 | `frontend/images/logo/aprovacao-logo.svg` | Logo exibida no cabecalho do catalogo |
 | `frontend/images/bancos/*.png` | Capas originais recebidas para os cards |
 | `frontend/images/bancos/*.svg` | Capas complementares e fallbacks locais |
 
-O fundo foi projetado para manter o centro escuro, preservando contraste para os cards. As linhas de LED sao responsivas por meio de `background-size: cover` e mantem a proporcao do SVG ao ocupar a viewport.
+O fundo oficial usa `background-size: cover` e `background-position: center center`, mantendo a arquitetura central como ponto de foco e preservando a proporção original. Um overlay discreto de contraste é aplicado separadamente para a leitura dos cards e textos, sem alterar o arquivo de imagem.
+
+A foto de `prof-betao.png` possui transparência e é exibida com `object-fit: contain`, preservando o enquadramento original dentro da moldura da landing. A assinatura derivada do arquivo fornecido é mantida em branco, com fundo transparente, e fica sobreposta no canto inferior direito da moldura.
 
 ## Banco de dados
 
@@ -274,9 +294,13 @@ Para transformar essa estrutura em uma API funcional, sera necessario adicionar,
 4. Opcionalmente adicione `<imageKey>.svg` como fallback.
 5. Se o banco tambem for persistido, atualize os scripts SQL ou a futura API.
 
-### Alterar o fundo neon
+### Alterar o fundo oficial
 
-Edite `frontend/assets/neon-cyber-bg.svg`. O arquivo concentra geometria, espessura das linhas, filtros de glow e reflexos no piso. A pagina usa esse asset em `body.bancos-showcase::before`.
+O asset atual é `frontend/assets/banking-architecture-bg.png`. Ele é aplicado em `body::before`, `body.bancos-showcase::before` e `body.landing-page::before`; mantenha a mesma proporção ao substituí-lo. Os antigos LEDs de borda foram removidos das telas principais.
+
+### Atualizar a imagem do professor
+
+Substitua `frontend/images/professor/prof-betao.png` por uma imagem autorizada do Prof. Betão. Prefira uma foto vertical com transparência; o frame da landing usa `object-fit: contain` para preservar a composição.
 
 ### Alterar a grade e o tamanho dos cards
 
@@ -299,12 +323,13 @@ Edite as regras finais de `frontend/css/bancos.css`:
 
 Antes de publicar, valide ao menos:
 
-1. O carregamento de `frontend/html/bancos.html` em desktop e celular.
-2. A exibicao das 13 capas e o fallback de imagem quando um asset estiver ausente.
-3. O menu de cada card, incluindo fechamento por clique externo e tecla `Esc`.
-4. Os links reais de compra em uma nova aba.
-5. A execucao de `schema.sql` e `inserts.sql` no banco selecionado.
-6. A substituicao do catalogo local por uma API quando o backend estiver pronto.
+1. O carregamento de `frontend/html/index.html` em desktop e celular, incluindo os CTAs para o catálogo.
+2. O carregamento e o enquadramento da foto do professor na landing.
+3. A exibicao das 13 capas e o fallback de imagem quando um asset estiver ausente.
+4. O menu de cada card, incluindo fechamento por clique externo e tecla `Esc`.
+5. Os links reais de compra em uma nova aba.
+6. A execucao de `schema.sql` e `inserts.sql` no banco selecionado.
+7. A substituicao do catalogo local por uma API quando o backend estiver pronto.
 
 ## Licença
 
